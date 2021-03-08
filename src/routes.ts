@@ -27,7 +27,7 @@ routes.get("/orphanages", OrphanagesController.index);
 
 
 //ADMIN ROUTES
-routes.use(auth);
+// routes.use(auth);
 routes.post("/orphanage/delete/:id", OrphanagesController.delete);
 routes.get("/pending", OrphanagesController.indexPending);
 routes.put("/pending/:id", OrphanagesController.pending);
