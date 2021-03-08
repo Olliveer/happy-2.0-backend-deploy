@@ -3,6 +3,12 @@ import jwt from 'jsonwebtoken';
 import authConfig from '../config/auth';
 import { AppError } from "../errors/AppError";
 
+interface TokenPayload {
+  id: string;
+  iat: number;
+  exp: number;
+}
+
 export default function auth(req: Request, res: any, next: NextFunction): void {
   const authHeader: string | undefined = req.headers.authorization;
 
@@ -14,7 +20,9 @@ export default function auth(req: Request, res: any, next: NextFunction): void {
 
   try {
     const verified = jwt.verify(token, authConfig.jwt.secret);
-    req.user = verified;
+    const { id } = verified as TokenPayload;
+
+    req.user = id;
 
     return next();
   } catch (err) {
