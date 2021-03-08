@@ -105,8 +105,8 @@ export default {
       return {
         name: image.originalname,
         size: image.size,
-        key: image.filename,
-        url: image.path || ''
+        key: image.fileName,
+        url: image.location || ''
       };
     });
 
@@ -169,7 +169,7 @@ export default {
         const img = imageRepository.create({
           name: image.originalname,
           size: image.size,
-          key: image.key,
+          key: image.fileName,
           url: image.location || '',
           orphanage: id,
         });
