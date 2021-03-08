@@ -27,13 +27,13 @@ const storageTypes = {
     bucket: process.env.STORAGE_BUCKET as string,
     contentType: multerS3.AUTO_CONTENT_TYPE,
     acl: 'public-read',
-    key: (req, file, cb) => {
+    key: (req, file, callback) => {
       crypto.randomBytes(16, (err, hash) => {
-        if (err) cb(err);
+        if (err) callback(err);
 
         const originalName = file.originalname.split(' ').join('-')
         const fileName = `${hash.toString('hex')}-${originalName}`;
-        cb(null, fileName);
+        callback(null, fileName);
       })
     },
   })
