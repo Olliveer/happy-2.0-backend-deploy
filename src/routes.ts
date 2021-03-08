@@ -21,13 +21,13 @@ routes.post("/forgot", UsersController.forgot);
 routes.post("/reset", UsersController.reset);
 
 routes.post("/orphanages", multer(config).array("images"), OrphanagesController.create);
-routes.get("/orphanages/:id", OrphanagesController.show);
+routes.get("/orphanage/:id", OrphanagesController.show);
 routes.get("/orphanages", OrphanagesController.index);
 
 
 
 //ADMIN ROUTES
-routes.use(auth);
+// routes.use(auth);
 routes.post("/orphanage/delete/:id", OrphanagesController.delete);
 routes.get("/pending", OrphanagesController.indexPending);
 routes.put("/pending/:id", OrphanagesController.pending);
