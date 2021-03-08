@@ -1,13 +1,12 @@
+import cors from "cors";
 import 'dotenv/config';
 import express, { NextFunction, Request, Response } from "express";
 import "express-async-errors";
-import routes from "./routes";
 import path from "path";
-import cors from "cors";
-
 import "./database/connection";
-import errorHandler from "./errors/handler";
 import { AppError } from "./errors/AppError";
+import routes from "./routes";
+
 
 const app = express();
 
