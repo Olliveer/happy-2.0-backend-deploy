@@ -17,9 +17,8 @@ const storageTypes = {
         }
 
         const originalName = file.originalname.split(' ').join('-')
-
-        file.key = `${hash.toString('hex')}-${originalName}`;
-        callback(null, file.key);
+        const fileName = `${hash.toString('hex')}-${originalName}`;
+        callback(null, fileName);
       });
     },
   }),
