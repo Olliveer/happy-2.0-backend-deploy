@@ -11,7 +11,6 @@ module.exports = {
     migrationsDir: process.env.TYPEORM_MIGRATIONS_DIR,
   },
   extra: {
-    ssl: true,
-    rejectUnauthorized: false,    
+    ssl: { rejectUnauthorized: false },  
   }
 }
