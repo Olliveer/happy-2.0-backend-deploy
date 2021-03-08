@@ -1,10 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { getCustomRepository, getRepository } from "typeorm";
 import * as Yup from "yup";
-import { deleteImagesAWS } from "../config/multer";
 import { AppError } from "../errors/AppError";
 import Image from "../models/Image";
-import { default as Orphanage, default as Orphanages } from "../models/Orphanage";
 import { OrphanagesRepository } from "../repositories/OrphanagesRepository";
 import orphanageView from "../views/orphanages_view";
 
@@ -107,8 +105,8 @@ export default {
       return {
         name: image.originalname,
         size: image.size,
-        key: image.key,
-        url: image.location || ''
+        key: image.filename,
+        url: image.path || ''
       };
     });
 
