@@ -41,7 +41,7 @@ const storageTypes = {
 
 const config: multer.Options = {
   dest: path.resolve(__dirname, '..', '..', 'tmp', 'uploads'),
-  storage: storageTypes[process.env.STORAGE_TYPE],
+  storage: storageTypes['s3'],
   limits: {
     fileSize: 5 * 1024 * 1024,
   },
@@ -60,23 +60,6 @@ const config: multer.Options = {
     }
   },
 }
-
-export const deleteImagesAWS = async (files: { key: string }[]) => {
-  Promise.all(
-    files.map((image) => {
-      return new Promise((resolve, reject) => {
-        s3
-          .deleteObject({
-            Bucket: process.env.STORAGE_BUCKET as string,
-            Key: image.key,
-          })
-          .promise()
-      });
-    })
-  )
-    .then((response) => response)
-    .catch((err) => err);
-};
 
 export default config;
 
