@@ -106,7 +106,7 @@ export default {
         name: image.originalname,
         size: image.size,
         key: image.filename,
-        url: image.location || ''
+        url: image.path || ''
       };
     });
 
@@ -170,7 +170,7 @@ export default {
           name: image.originalname,
           size: image.size,
           key: image.filename,
-          url: image.location || '',
+          url: image.path || '',
           orphanage: id,
         });
         await imageRepository.save(img);
