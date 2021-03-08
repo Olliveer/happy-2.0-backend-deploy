@@ -61,6 +61,23 @@ const config: multer.Options = {
   },
 }
 
+export const deleteImagesAWS = async (files: { key: string }[]) => {
+  Promise.all(
+    files.map((image) => {
+      return new Promise((resolve, reject) => {
+        s3
+          .deleteObject({
+            Bucket: process.env.STORAGE_BUCKET as string,
+            Key: image.key,
+          })
+          .promise()
+      });
+    })
+  )
+    .then((response) => response)
+    .catch((err) => err);
+};
+
 export default config;
 
 
