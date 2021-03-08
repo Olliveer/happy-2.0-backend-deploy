@@ -101,12 +101,12 @@ export default {
 
     const requestImages = req.files as Express.Multer.File[];
 
-    const images = requestImages.map((image) => {
+    const images = requestImages.map((image: any) => {
       return {
         name: image.originalname,
         size: image.size,
-        key: image.filename,
-        url: image.path || ''
+        key: image.key || image.filename,
+        url: image.location || ''
       };
     });
 
@@ -165,12 +165,12 @@ export default {
     //new images
     const requestImages = req.files as Express.Multer.File[];
     if (requestImages) {
-      requestImages.forEach(async (image) => {
+      requestImages.forEach(async (image: any) => {
         const img = imageRepository.create({
           name: image.originalname,
           size: image.size,
-          key: image.filename,
-          url: image.path || '',
+          key: image.key,
+          url: image.location || '',
           orphanage: id,
         });
         await imageRepository.save(img);
